@@ -1,0 +1,15 @@
+<h2>What project are you currently working on?</h2>
+
+<h3 style="margin-top: 50px;">Add a new project</h3>
+
+<%= render 'form', project: @project %>
+
+<% if @projects.present? %>
+  <div style="margin-top: 50px;">
+  <h4>OR</h4>
+  <br>
+  <h4><%= link_to "Select existing project", user_projects_path(current_user) %></h4>
+  </div>
+<% end %>
+
+</div>
