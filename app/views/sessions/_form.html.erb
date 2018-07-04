@@ -1,0 +1,19 @@
+<%= form_for(:session, url: sign_in_path) do |form| %>
+  <br>
+  <div class="text-field">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: 'form-control', style:'width: 300px;' %>
+  </div>
+
+  <div class="password-field">
+    <%= form.label :password %>
+    <%= form.password_field :password, class: 'form-control', style:'width: 300px;' %>
+  </div>
+  <br>
+  <p id="notice"><%= notice %></p>
+
+  <div class="submit-field">
+    <%= form.submit "Sign In", class: 'btn btn-default' %>
+  </div>
+
+<% end %>
