@@ -1,0 +1,30 @@
+<%= form_with model: project, local: true, url: new_user_project_path(current_user) do |form| %>
+  <% if project.errors.any? %>
+  <br>
+    <div id="error_explanation">
+      <h5><%= pluralize(project.errors.count, "error") %> prohibited this contact from being saved:</h5>
+
+      <ul>
+      <% project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <br>
+  <div class="text-field">
+    <%= form.label :project_name %>
+    <%= form.text_field :name, class: 'form-control', style:'width: 300px;' %>
+  </div>
+
+  <div class="number-field">
+    <%= form.label :hourly_rate %>
+    <%= form.number_field :hourly_rate, class: 'form-control', style:'width: 300px;', min: 1 %>
+  </div>
+  <br>
+
+  <div class="submit-field">
+    <%= form.submit "Add Project", class: 'btn btn-default' %>
+  </div>
+
+<% end %>

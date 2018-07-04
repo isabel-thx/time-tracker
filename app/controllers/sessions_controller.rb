@@ -6,10 +6,10 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:session][:email])
     if @user = User.authenticate(params[:session])
       session[:user_id] = @user.id
-      redirect_to projects_path
+      redirect_to new_user_project_path(current_user)
     else
       respond_to do |format|
-        format.html { redirect_to sign_in_path, notice: 'Invalid email/password combination' }
+        format.html { redirect_to sign_in_path, notice: 'Invalid email or password' }
       end
     end
   end
