@@ -2,12 +2,15 @@ Rails.application.routes.draw do
   root 'sessions#new'
 
   resources :users, except: :index do  
-    resources :projects do
-      resources :tasks
-    end
+    resources :projects
   end
 
-  post "/users/:id/projects/new" => 'projects#create'
+  resources :projects do
+    resources :tasks
+  end
+
+  post "/projects/new" => 'projects#create'
+  post "/projects/:project_id/tasks/new" => 'tasks#create'
 
   get "/sign_in" => 'sessions#new', as: "sign_in"
   post "/sign_in" => 'sessions#create'

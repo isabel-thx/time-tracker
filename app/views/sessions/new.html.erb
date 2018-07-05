@@ -1,5 +1,11 @@
-<h1>Sign in</h1>
+<% if signed_in? %>
 
-<%= render partial: '/sessions/form' %>
+  <h3><%= "Hello #{current_user.name}," %></h3>
+  <h3>Add a project to start tracking your hours!</h3>
 
-</div>
+<% else %>
+
+  <h1>Sign in</h1>
+  <%= render partial: '/sessions/form' %>
+
+<% end %>

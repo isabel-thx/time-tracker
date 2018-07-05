@@ -4,13 +4,16 @@
 
   <div id='projects'>  
     <% @projects.each do |project| %>
-        <h3 style="margin-top: 30px;"><%= "#{project.name}" %></h3>
-        <h5><%= "Rate: $#{project.hourly_rate}/hour" %></h5>
-        <%= link_to "Add a task for this project" %>
-        <br>
+      <h3 style="margin-top: 30px;"><%= "#{project.name}" %></h3>
+      <h5><%= "Rate: $#{project.hourly_rate}/hour" %></h5>
+      <% if project.tasks.present? %>
+        <%= link_to "View completed tasks", project_tasks_path(project.id) %> |
+      <% end %>
+      <%= link_to "Add a task for this project", new_project_task_path(project.id) %>
+      <br>
     <% end %>
   </div>
 <% elsif current_user.projects == [] %>
   <h2>Your Projects</h2><br>
-  <%= link_to 'Add a Project', new_user_project_path(current_user) %>
+  <%= link_to 'Add Project', new_project_path %>
 <% end %>

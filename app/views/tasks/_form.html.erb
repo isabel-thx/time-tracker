@@ -1,0 +1,40 @@
+<%= form_for :task, url: new_project_task_path(project) do |form| %>
+  <% if task.errors.any? %>
+  <br>
+    <div id="error_explanation">
+      <h5><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h5>
+
+      <ul>
+      <% task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <br>
+  <div class="text-field">
+    <%= form.label :task_name %>
+    <%= form.text_field :name, class: 'form-control', style:'width: 300px;' %>
+  </div>
+
+  <div class="date-field">
+    <%= form.label :date %>
+    <%= form.date_field :date, class: 'form-control', style:'width: 300px;' %>
+  </div>
+
+  <div class="time-field">
+    <%= form.label :start_time %>
+    <%= form.time_field :start_time, class: 'form-control', type: 'time', style:'width: 300px;' %>
+  </div>
+
+  <div class="time-field">
+    <%= form.label :end_time %>
+    <%= form.time_field :end_time, class: 'form-control', type: 'time', style:'width: 300px;' %>
+  </div>
+  <br>
+
+  <div class="submit-field">
+    <%= form.submit "Add Task", class: 'btn btn-default' %>
+  </div>
+
+<% end %>
