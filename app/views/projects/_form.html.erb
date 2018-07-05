@@ -1,8 +1,8 @@
-<%= form_with model: project, local: true, url: new_user_project_path(current_user) do |form| %>
+<%= form_with model: project, local: true, url: new_project_path do |form| %>
   <% if project.errors.any? %>
   <br>
     <div id="error_explanation">
-      <h5><%= pluralize(project.errors.count, "error") %> prohibited this contact from being saved:</h5>
+      <h5><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h5>
 
       <ul>
       <% project.errors.full_messages.each do |message| %>

@@ -1,0 +1,28 @@
+<h2 style="margin-bottom: 40px;"><%= "#{@project.name} Tracker" %></h2>
+
+<p id="notice"><%= notice %></p>
+
+<table class= "table">
+ <thead>
+    <tr>
+      <th>Task Name</th>
+      <th>Date</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Number of Hours</th>
+    </tr>
+  </thead>
+
+  <tbody>   
+    <% @tasks.each do |task| %>     
+      <tr>
+        <td><%= task.name %></td>
+        <td><%= task.date %></td>
+        <td><%= task.start_time.strftime("%I:%m %p") %></td>
+        <td><%= task.end_time.strftime("%I:%m %p") %></td>
+        <td><%= (task.end_time - task.start_time) / 3600 %></td>
+        <td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
