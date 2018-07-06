@@ -18,8 +18,13 @@
       <% if signed_in? %>
         <ul class="nav navbar-nav">
           <li>
-            <%= link_to "Add New Task", projects_path %>
+            <%= link_to "Add New Task", new_project_path %>
           </li>
+          <% if current_user.projects.each {|i| i.tasks }.present? %>
+            <li>
+              <%= link_to "View All Tasks", user_tasks_path(current_user) %>
+            </li>
+          <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Sign Out", sign_out_path, :method => :delete %></li>

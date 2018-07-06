@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   post "/projects/new" => 'projects#create'
   post "/projects/:project_id/tasks/new" => 'tasks#create'
 
+  get "/user/:user_id/tasks" => "reports#index", as: "user_tasks"
+
   get "/sign_in" => 'sessions#new', as: "sign_in"
   post "/sign_in" => 'sessions#create'
   delete "/sign_out" => 'sessions#destroy', as: "sign_out"
