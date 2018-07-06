@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20180703140629) do
     t.integer "project_id"
     t.string "name"
     t.date "date"
-    t.time "start_time"
-    t.time "end_time"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_tasks_on_project_id"
