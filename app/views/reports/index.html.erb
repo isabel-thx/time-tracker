@@ -17,7 +17,7 @@
     </thead>
 
     <tbody>   
-      <% project.tasks.each do |task| %>     
+      <% project.tasks.reverse.each do |task| %>     
         <% taskHours = ((task.end_time - task.start_time) / 3600).round(1) %>
         <tr>
           <td><%= task.name %></td>
@@ -39,9 +39,9 @@
   <% end %>
 
   <div class="flex-row" style="margin-right: 300px; margin-bottom: 50px;">
-    <h4>Total hours: <%= totalHours %></h4>
+    <h4>Total hours: <%= totalHours.round(1)  %></h4>
     <h4>Hourly rate: $<%= project.hourly_rate %></h4>
-    <h4>Project total: $<%= (totalHours * project.hourly_rate).round %></h4>
+    <h4>Project total: $<%= (totalHours.round(1) * project.hourly_rate).round %></h4>
   </div>
 
 <% end %>
