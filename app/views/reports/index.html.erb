@@ -1,4 +1,9 @@
-<h2 style="margin-bottom: 40px;"><%= "Your Tasks" %></h2>
+<div class="flex-row" style="margin-bottom: 40px; margin-right: 300px;">
+  <h2><%= "Your Tasks" %></h2>
+  <%= form_tag(user_tasks_path, :method => "get", id: "dropdown-form") do %>
+    <%= select_tag :month, options_for_select(Task::MONTHS.collect.with_index.to_a, selected: params[:month]), onchange: 'this.form.submit()', include_blank: 'Select a month' %>
+  <% end %>
+</div>
 
 <% @projects.each do |project| %>
 
@@ -15,15 +20,15 @@
         <th>Subtotal</th>
       </tr>
     </thead>
-
-    <tbody>   
-      <% project.tasks.reverse.each do |task| %>     
+    
+    <tbody>
+      <% all_tasks(project).reverse.each do |task| %>
         <% taskHours = ((task.end_time - task.start_time) / 3600).round(1) %>
         <tr>
           <td><%= task.name %></td>
           <td><%= task.date %></td>
-          <td><%= task.start_time.strftime("%I:%m %p") %></td>
-          <td><%= task.end_time.strftime("%I:%m %p") %></td>
+          <td><%= task.start_time.strftime("%I:%M %p") %></td>
+          <td><%= task.end_time.strftime("%I:%M %p") %></td>
           <td><%= taskHours %></td>
           <td><%= project.hourly_rate %></td>
           <td><%= (((task.end_time - task.start_time) / 3600).round(1)) * project.hourly_rate %></td>
@@ -34,14 +39,14 @@
   </table>
 
   <% totalHours = 0 %>
-  <% project.tasks.each do |task| %>
+  <% all_tasks(project).each do |task| %>
     <% totalHours += ((task.end_time - task.start_time) / 3600).round(1) %>
-  <% end %>
 
-  <div class="flex-row" style="margin-right: 300px; margin-bottom: 50px;">
-    <h4>Total hours: <%= totalHours.round(1)  %></h4>
-    <h4>Hourly rate: $<%= project.hourly_rate %></h4>
-    <h4>Project total: $<%= (totalHours.round(1) * project.hourly_rate).round %></h4>
-  </div>
+    <div class="flex-row" style="margin-right: 300px; margin-bottom: 50px;">
+      <h4>Total hours: <%= totalHours.round(1)  %></h4>
+      <h4>Hourly rate: $<%= project.hourly_rate %></h4>
+      <h4>Project total: $<%= (totalHours.round(1) * project.hourly_rate).round %></h4>
+    </div>
+  <% end %>
 
 <% end %>
