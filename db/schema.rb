@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20180703140629) do
     t.integer "user_id"
     t.integer "project_id"
     t.string "name"
-    t.date "date"
+    t.datetime "date"
     t.datetime "start_time"
     t.datetime "end_time"
     t.datetime "created_at", null: false
