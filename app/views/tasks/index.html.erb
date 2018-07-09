@@ -17,7 +17,7 @@
     <% @tasks.each do |task| %>
       <tr>
         <td><%= task.name %></td>
-        <td><%= task.date %></td>
+        <td><%= task.date.strftime("%d-%m-%Y") %></td>
         <td><%= task.start_time.strftime("%I:%M %p") %></td>
         <td><%= task.end_time.strftime("%I:%M %p") %></td>
         <td><%= ((task.end_time - task.start_time) / 3600).round(1) %></td>
