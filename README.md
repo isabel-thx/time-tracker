@@ -1,24 +1,22 @@
-# README
+# Time Tracker App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#### est. 4 July, 2018
 
-Things you may want to cover:
+## Project Setup
 
-* Ruby version
+- `bundle install`
+- `rails db:create && rails db:migrate`
+- `rails db:seed`
+- `rails s`
 
-* System dependencies
+## Potential issues
 
-* Configuration
+- Routes not customized for not-signed-in users
+- Slow rendering if database gets bigger
+- Vulnerabilities not assessed
 
-* Database creation
+## Future development
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Use external database
+- Implement Rubocop to enforce coding best practices
+- Add feature / integration tests
