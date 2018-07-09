@@ -5,6 +5,8 @@
   <% end %>
 </div>
 
+<% total_payment = 0 %>
+
 <% @projects.each do |project| %>
 
   <table class= "table">
@@ -23,13 +25,13 @@
     
     <tbody>
       <% all_tasks(project).reverse.each do |task| %>
-        <% taskHours = ((task.end_time - task.start_time) / 3600).round(1) %>
+        <% task_hours = ((task.end_time - task.start_time) / 3600).round(1) %>
         <tr>
           <td><%= task.name %></td>
-          <td><%= task.date %></td>
+          <td><%= task.date.strftime("%d-%m-%Y") %></td>
           <td><%= task.start_time.strftime("%I:%M %p") %></td>
           <td><%= task.end_time.strftime("%I:%M %p") %></td>
-          <td><%= taskHours %></td>
+          <td><%= task_hours %></td>
           <td><%= project.hourly_rate %></td>
           <td><%= (((task.end_time - task.start_time) / 3600).round(1)) * project.hourly_rate %></td>
           <td>
@@ -38,15 +40,19 @@
     </tbody>
   </table>
 
-  <% totalHours = 0 %>
+  <% total_hours = 0 %>
   <% all_tasks(project).each do |task| %>
-    <% totalHours += ((task.end_time - task.start_time) / 3600).round(1) %>
-
-    <div class="flex-row" style="margin-right: 300px; margin-bottom: 50px;">
-      <h4>Total hours: <%= totalHours.round(1)  %></h4>
-      <h4>Hourly rate: $<%= project.hourly_rate %></h4>
-      <h4>Project total: $<%= (totalHours.round(1) * project.hourly_rate).round %></h4>
-    </div>
+    <% total_hours += ((task.end_time - task.start_time) / 3600).round(1) %>
   <% end %>
 
+    <div class="flex-row" style="margin-right: 300px; margin-bottom: 50px;">
+      <h4>Total hours: <%= total_hours.round(1)  %></h4>
+      <h4>Hourly rate: $<%= project.hourly_rate %></h4>
+      <h4>Project total: $<%= (total_hours.round(1) * project.hourly_rate).round %></h4>
+    </div>
+
+    <% total_payment += (total_hours.round(1) * project.hourly_rate).round %>
+
 <% end %>
+
+<h3>Total payment: $<%= total_payment %></h3>
